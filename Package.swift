@@ -1,6 +1,6 @@
+// swift-tools-version: 6.0
 import PackageDescription
 
-//Änderung auf v17 
 let package = Package(
     name: "Broke",
     platforms: [.iOS(.v17)], // passt zu SFSymbolsPicker
