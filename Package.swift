@@ -3,24 +3,25 @@ import PackageDescription
 
 let package = Package(
     name: "Broke",
-    platforms: [.iOS(.v17)], // passt zu SFSymbolsPicker
+    platforms: [.iOS(.v17)],
     products: [
-        .library(name: "Broke", targets: ["Broke"]),
+        // Produktname "Broke" (muss in Xcode so sichtbar sein)
+        .library(name: "Broke", targets: ["Broke"])
     ],
     dependencies: [
-        // WICHTIG: richtige URL + Version
-        .package(url: "https://github.com/alessiorubicini/SFSymbolsPickerForSwiftUI", from: "1.0.8"),
+        // Picker-Dependency mit korrekt referenziertem Product
+        .package(url: "https://github.com/alessiorubicini/SFSymbolsPickerForSwiftUI")
+        // (oder dein vorheriger Picker-Fork — wichtig ist, dass das Product "SFSymbolsPicker" heißt)
     ],
     targets: [
         .target(
             name: "Broke",
-            // HIER explizit das Product referenzieren:
             dependencies: [
-                .product(name: "SFSymbolsPicker", package: "SFSymbolsPicker")
+                .product(name: "SFSymbolsPicker", package: "SFSymbolsPickerForSwiftUI")
             ],
             path: "Broke",
             exclude: [
-                "BrokeApp.swift",        // @main entfernen
+                "BrokeApp.swift",      // @main der Demo
                 "Info.plist",
                 "Assets.xcassets",
                 "Preview Content",
