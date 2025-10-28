@@ -8,18 +8,22 @@ let package = Package(
         .library(name: "Broke", targets: ["Broke"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/alessiorubicini/SFSymbolsPickerForSwiftUI.git",
-                 from: "2.2.0")
+        // ← Alessio Rubicini, auf Branch statt Version pinnen
+        .package(
+            url: "https://github.com/alessiorubicini/SFSymbolsPickerForSwiftUI.git",
+            branch: "main"
+        )
     ],
     targets: [
         .target(
             name: "Broke",
             dependencies: [
-                .product(name: "SFSymbolsPicker",
-                         package: "SFSymbolsPickerForSwiftUI")
+                // ← Product-Name + Paket-IDENTITÄT müssen zusammenpassen
+                .product(name: "SFSymbolsPicker", package: "SFSymbolsPickerForSwiftUI")
             ],
             path: "Broke",
             exclude: [
+                // @main der Demo + Projektdateien ausschließen
                 "BrokeApp.swift",
                 "Info.plist",
                 "Assets.xcassets",
